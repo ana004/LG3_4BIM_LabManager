@@ -15,6 +15,22 @@ public class ComputerController : Controller
 
     public IActionResult Index() => View(_context.Computers);
 
+    public IActionResult Create()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult Create([FromForm] string ram, [FromForm] string processor)
+    {
+        List<Computer> computers = _context.Computers.ToList();
+        int id = computers.Last().Id + 1; 
+        Computer computer = new Computer(id, ram, processor);
+        _context.Computers.Add(computer);
+        _context.SaveChanges();
+        return RedirectToAction(nameof(Index));
+    }
+
     public IActionResult Show(int id)
     {
         Computer computer = _context.Computers.Find(id);
