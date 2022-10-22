@@ -42,4 +42,11 @@ public class ComputerController : Controller
 
         return View(computer);
     }
+
+    public ActionResult Delete(int id)
+    {
+        _context.Computers.Remove(_context.Computers.Find(id));
+        _context.SaveChanges();
+        return RedirectToAction(nameof(Index));
+    }
 }
