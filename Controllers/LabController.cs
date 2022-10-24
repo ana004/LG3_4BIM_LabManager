@@ -13,4 +13,16 @@ public class LabController : Controller
     }
 
     public IActionResult Index() => View(_context.Labs);
+
+    public IActionResult Show(int id)
+    {
+        Lab lab = _context.Labs.Find(id);
+
+        if(lab == null)
+        {
+            return NotFound(); 
+        }
+
+        return View(lab);
+    }
 }
