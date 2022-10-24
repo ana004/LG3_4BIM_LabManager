@@ -48,6 +48,22 @@ public class LabController : Controller
         return View(lab);
     }
 
+    public IActionResult Update()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult Update([FromForm] Lab lab)
+    {
+        ErrorExistsByLabNumber(lab.Number);
+        ErrorExistsByLabName(lab.Name);
+        
+        _context.Labs.Update(lab);
+        _context.SaveChanges();
+        return RedirectToAction(nameof(Index));
+    }
+
     public IActionResult Delete(int id)
     {
         Lab lab = _context.Labs.Find(id);
