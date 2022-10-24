@@ -43,7 +43,20 @@ public class ComputerController : Controller
         return View(computer);
     }
 
-    public ActionResult Delete(int id)
+    public IActionResult Update()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public IActionResult Update([FromForm] Computer computer)
+    {
+        _context.Computers.Update(computer);
+        _context.SaveChanges();
+        return RedirectToAction(nameof(Index));
+    }
+
+    public IActionResult Delete(int id)
     {
         _context.Computers.Remove(_context.Computers.Find(id));
         _context.SaveChanges();
