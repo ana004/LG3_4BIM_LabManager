@@ -22,8 +22,8 @@ public class LabController : Controller
     [HttpPost]
     public IActionResult Create([FromForm] int number, [FromForm] string name, [FromForm] string block)
     {
-        ErrorExistsByLabNumber(number);
-        ErrorExistsByLabName(name);
+        checkIfLabExistsByNumber(number);
+        checkIfLabExistsByName(name);
 
         List<Lab> labs = _context.Labs.ToList();
         int id = labs.Last().Id + 1; 
@@ -56,9 +56,9 @@ public class LabController : Controller
     [HttpPost]
     public IActionResult Update([FromForm] Lab lab)
     {
-        ErrorExistsByLabNumber(lab.Number);
-        ErrorExistsByLabName(lab.Name);
-        
+        checkIfLabExistsByNumber(lab.Number);
+        checkIfLabExistsByName(lab.Name);
+
         _context.Labs.Update(lab);
         _context.SaveChanges();
         return RedirectToAction(nameof(Index));
@@ -78,13 +78,13 @@ public class LabController : Controller
         return RedirectToAction(nameof(Index));
     }
 
-    private void ErrorExistsByLabNumber(int number) 
+    private void checkIfLabExistsByNumber(int number) 
     {    
         if(_context.Labs.Any(e => e.Number.Equals(number)))
             throw new Exception($"Já existe um laboratório com número {number}");
     }
 
-    private void ErrorExistsByLabName(string name) 
+    private void checkIfLabExistsByName(string name) 
     {    
         if(_context.Labs.Any(e => e.Name.Equals(name)))
             throw new Exception($"O laboratório {name} já existe");
