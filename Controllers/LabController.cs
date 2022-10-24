@@ -48,6 +48,20 @@ public class LabController : Controller
         return View(lab);
     }
 
+    public IActionResult Delete(int id)
+    {
+        Lab lab = _context.Labs.Find(id);
+
+        if(lab == null)
+        {
+            return NotFound(); 
+        }
+
+        _context.Labs.Remove(lab);
+        _context.SaveChanges();
+        return RedirectToAction(nameof(Index));
+    }
+
     private void ErrorExistsByLabNumber(int number) 
     {    
         if(_context.Labs.Any(e => e.Number.Equals(number)))

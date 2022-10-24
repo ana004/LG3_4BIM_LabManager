@@ -58,7 +58,14 @@ public class ComputerController : Controller
 
     public IActionResult Delete(int id)
     {
-        _context.Computers.Remove(_context.Computers.Find(id));
+        Computer computer = _context.Computers.Find(id);
+
+        if(computer == null)
+        {
+            return NotFound(); 
+        }
+
+        _context.Computers.Remove(computer);
         _context.SaveChanges();
         return RedirectToAction(nameof(Index));
     }
