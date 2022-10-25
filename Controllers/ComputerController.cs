@@ -43,14 +43,22 @@ public class ComputerController : Controller
         return View(computer);
     }
 
-    public IActionResult Update()
+    public IActionResult Update(int id)
     {
-        return View();
+        Computer computer = _context.Computers.Find(id);
+        return View(computer);
     }
 
     [HttpPost]
     public IActionResult Update([FromForm] Computer computer)
     {
+        // Computer? computerNovo = _context.Computers.Find(computer.Id);
+
+        // if(computerNovo == null)
+        // {
+        //     return NotFound(); 
+        // }
+
         _context.Computers.Update(computer);
         _context.SaveChanges();
         return RedirectToAction(nameof(Index));
