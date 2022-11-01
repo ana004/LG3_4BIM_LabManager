@@ -1,29 +1,28 @@
-@model MvcLabManager.Models.Computer
+@model MvcLabManager.Models.Lab
 
 @{
     ViewData["Title"] = "Editar Laboratório";
 }
 <h1>@ViewData["Title"]</h1>
 
-<form id="form" action="Update" method="post">
+<form asp-controller="Lab" asp-action="Update" method="post">
     <p>
-        <label for="id">Id: </label>
-        <input type="number" name="id" id="id" required>
+        <input type="hidden" asp-for="Id" value="@Model.Id">
     </p>
 
     <p>
-        <label for="number">Número: </label>
-        <input type="number" name="number" id="number" required>
+        <label asp-for="Number">Número: </label>
+        <input type="number" asp-for="Number" value="@Model.Number" required>
     </p>
 
     <p>
-        <label for="name">Nome: </label>
-        <input type="text" name="name" id="name" required>
+        <label asp-for="Name">Nome: </label>
+        <input type="text" asp-for="Name" value="@Model.Name" required>
     </p>
 
     <p>
-        <label for="block">Bloco: </label>
-        <input type="text" name="block" id="block" required>
+        <label asp-for="Block">Bloco: </label>
+        <input type="text" asp-for="Block" value="@Model.Block" required>
     </p>
 
     <button type="submit">Salvar</button>

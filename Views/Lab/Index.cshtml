@@ -18,6 +18,7 @@ else
                 <th>Número</th>
                 <th>Nome</th>
                 <th>Bloco</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -29,13 +30,9 @@ else
                     <td>@lab.Name</td>
                     <td>@lab.Block</td>
                     <td>
-                        <a class="btn btn-primary btn-sm" href="/Lab/Show/@lab.Id">Ver</a>
-                    </td>
-                    <td>
-                        <a class="btn btn-primary btn-sm" href="/Lab/Update/@lab.Id">Editar</a>
-                    </td>
-                    <td>
-                        <a class="btn btn-primary btn-sm" href="/Lab/Delete/@lab.Id">Remover</a>
+                        <a class="btn btn-primary btn-sm" asp-controller="Lab" asp-action="Show" asp-route-id="@lab.Id">Ver</a>
+                        <a class="btn btn-primary btn-sm" asp-controller="Lab" asp-action="Update" asp-route-id="@lab.Id">Editar</a>
+                        <a class="btn btn-primary btn-sm" asp-controller="Lab" asp-action="Delete" asp-route-id="@lab.Id">Remover</a>
                     </td>
                 </tr>
             }

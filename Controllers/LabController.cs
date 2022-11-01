@@ -48,16 +48,17 @@ public class LabController : Controller
         return View(lab);
     }
 
-    public IActionResult Update()
+    public IActionResult Update(int id)
     {
-        return View();
+        Lab lab = _context.Labs.Find(id);
+        return View(lab);
     }
 
     [HttpPost]
     public IActionResult Update([FromForm] Lab lab)
     {
-        checkIfLabExistsByNumber(lab.Number);
-        checkIfLabExistsByName(lab.Name);
+        // checkIfLabExistsByNumber(lab.Number);
+        // checkIfLabExistsByName(lab.Name);
 
         _context.Labs.Update(lab);
         _context.SaveChanges();

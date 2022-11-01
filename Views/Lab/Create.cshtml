@@ -5,20 +5,20 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<form id="form" action="Create" method="post">
+<form asp-controller="Lab" asp-action="Create" method="post">
     <p>
-        <label for="number">Número: </label>
-        <input type="number" name="number" id="number" required>
+        <label asp-for="Number">Número: </label>
+        <input type="number" asp-for="Number" required>
     </p>
 
     <p>
-        <label for="name">Nome: </label>
-        <input type="text" name="name" id="name" required>
+        <label asp-for="Name">Nome: </label>
+        <input type="text" asp-for="Name" required>
     </p>
 
     <p>
-        <label for="block">Bloco: </label>
-        <input type="text" name="block" id="block" required>
+        <label asp-for="Block">Bloco: </label>
+        <input type="text" asp-for="Block" required>
     </p>
 
     <button type="submit">Criar</button>
