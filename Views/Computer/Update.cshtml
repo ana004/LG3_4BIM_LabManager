@@ -12,12 +12,14 @@
 
     <p>
         <label asp-for="Ram">Ram: </label>
-        <input type="text" asp-for="Ram" value="@Model.Ram" required>
+        <input type="text" asp-for="Ram" value="@Model.Ram">
+        <span asp-validation-for="Ram" class="text-danger"></span>
     </p>
 
     <p>
         <label asp-for="Processor">Processador: </label>
-        <input type="text" asp-for="Processor" value="@Model.Processor" required>
+        <input type="text" asp-for="Processor" value="@Model.Processor">
+        <span asp-validation-for="Processor" class="text-danger"></span>
     </p>
 
     <button type="submit">Salvar</button>

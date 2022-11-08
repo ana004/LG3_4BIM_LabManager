@@ -21,13 +21,19 @@ public class ComputerController : Controller
     }
 
     [HttpPost]
-    public IActionResult Create([FromForm] string ram, [FromForm] string processor)
+    public IActionResult Create([FromForm] Computer computer)
     {
-        List<Computer> computers = _context.Computers.ToList();
-        int id = computers.Last().Id + 1; 
-        Computer computer = new Computer(id, ram, processor);
+        // List<Computer> computers = _context.Computers.ToList();
+        // int id = computers.Last().Id + 1; 
+
+        if (!ModelState.IsValid)
+        {
+            return View(computer);
+        }
+
         _context.Computers.Add(computer);
         _context.SaveChanges();
+
         return RedirectToAction(nameof(Index));
     }
 
@@ -59,8 +65,14 @@ public class ComputerController : Controller
         //     return NotFound(); 
         // }
 
+        if (!ModelState.IsValid)
+        {
+            return View(computer);
+        }
+
         _context.Computers.Update(computer);
         _context.SaveChanges();
+        
         return RedirectToAction(nameof(Index));
     }
 
