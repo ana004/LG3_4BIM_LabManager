@@ -12,17 +12,20 @@
 
     <p>
         <label asp-for="Number">Número: </label>
-        <input type="number" asp-for="Number" value="@Model.Number" required>
+        <input type="number" asp-for="Number" value="@Model.Number">
+        <span asp-validation-for="Number" class="text-danger"></span>
     </p>
 
     <p>
         <label asp-for="Name">Nome: </label>
-        <input type="text" asp-for="Name" value="@Model.Name" required>
+        <input type="text" asp-for="Name" value="@Model.Name">
+        <span asp-validation-for="Name" class="text-danger"></span>
     </p>
 
     <p>
         <label asp-for="Block">Bloco: </label>
-        <input type="text" asp-for="Block" value="@Model.Block" required>
+        <input type="text" asp-for="Block" value="@Model.Block">
+        <span asp-validation-for="Block" class="text-danger"></span>
     </p>
 
     <button type="submit">Salvar</button>

@@ -20,15 +20,21 @@ public class LabController : Controller
     }
 
     [HttpPost]
-    public IActionResult Create([FromForm] int number, [FromForm] string name, [FromForm] string block)
+    public IActionResult Create([FromForm] Lab lab)
     {
-        checkIfLabExistsByNumber(number);
-        checkIfLabExistsByName(name);
 
-        List<Lab> labs = _context.Labs.ToList();
-        int id = labs.Last().Id + 1; 
+        if (!ModelState.IsValid)
+        {
+            return View(lab);
+        }
+
+        // checkIfLabExistsByNumber(number);
+        // checkIfLabExistsByName(name);
+
+        // List<Lab> labs = _context.Labs.ToList();
+        // int id = labs.Last().Id + 1; 
         
-        Lab lab = new Lab(id, number, name, block);
+        // Lab lab = new Lab(id, number, name, block);
 
         _context.Labs.Add(lab);
         _context.SaveChanges();
@@ -59,6 +65,11 @@ public class LabController : Controller
     {
         // checkIfLabExistsByNumber(lab.Number);
         // checkIfLabExistsByName(lab.Name);
+
+         if (!ModelState.IsValid)
+        {
+            return View(lab);
+        }
 
         _context.Labs.Update(lab);
         _context.SaveChanges();

@@ -9,11 +9,11 @@ public class Computer
     public int Id { get; set; }
 
     [Required]
-    [StringLength(10)]
+    [StringLength(10, MinimumLength = 3)]
     public string Ram { get; set; }
 
     [Required]
-    [StringLength(10)]
+    [StringLength(15, MinimumLength = 6)]
     public string Processor { get; set; }
 
     public Computer() { }
